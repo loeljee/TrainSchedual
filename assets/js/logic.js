@@ -1,12 +1,11 @@
 
 Date.prototype.isValid = function () {
-    // An invalid date object returns NaN for getTime() and NaN is the only
-    // object not strictly equal to itself.
+
     return this.getTime() === this.getTime();
 };
 
 
-// Initialize Firebase
+
 var config = {
     apiKey: "AIzaSyDbBOY2g7q0qDMjqZe6cUwxPOUtvP7okIc",
     authDomain: "train-shcedule.firebaseapp.com",
@@ -22,10 +21,10 @@ var database = firebase.database();
 function addEmployee() {
     event.preventDefault();
     //check for validation
-    var name = $("#ee-name").val().trim();
-    var role = $("#ee-role").val().trim();
-    var startDate = $("#start-date").val().trim();
-    var monthRate = $("#ee-rate").val().trim();
+    var name = $("#ee-name").val();
+    var role = $("#ee-role").val();
+    var startDate = $("#start-date").val();
+    var monthRate = $("#ee-rate").val();
     var fixedDate = moment(startDate).format('MM/DD/YYYY');
     var d = new Date(startDate);
     console.log(d.isValid());
@@ -75,9 +74,7 @@ database.ref().orderByChild("dateAdded").on("child_added", function (snapshot) {
     var rowDate = moment(snapshot.val().startDate).format("MM/DD/YYYY");
     var rowRate = snapshot.val().monthRate;
     var monthsDif = moment().diff(moment(rowDate), "months");
-    // alert (monthsDif);
-    // $("#comment-display").text(snapshot.val().dateAdded);
-    //add row data in order: Name, Role, Start Date, Months WOrked, Monthly Rate, Total billed
+
     rowDiv.append($("<td>").text(rowName));
     rowDiv.append($("<td>").text(rowRole));
     rowDiv.append($("<td>").text(rowDate));
@@ -94,6 +91,5 @@ database.ref().orderByChild("dateAdded").on("child_added", function (snapshot) {
 });
 
 
-
-
-
+// Beyond frustrated! coppied from time sheet activity for basic start and its getting and error even though the exact copy works fine 
+// I cant make any progress if it wont connect to firebase 
