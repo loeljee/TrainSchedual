@@ -1,8 +1,8 @@
 
-Date.prototype.isValid = function () {
+// Date.prototype.isValid = function () {
 
-    return this.getTime() === this.getTime();
-};
+//     return this.getTime() === this.getTime();
+// };
 
 
 
@@ -25,20 +25,20 @@ function addEmployee() {
     var role = $("#ee-role").val();
     var startDate = $("#start-date").val();
     var monthRate = $("#ee-rate").val();
-    var fixedDate = moment(startDate).format('MM/DD/YYYY');
+    var fixedDate = moment(startDate).format('HH:mm');
     var d = new Date(startDate);
-    console.log(d.isValid());
-    console.log(d);
+    // console.log(d.isValid());
+    // console.log(d);
 
-    if (isNaN(monthRate)) {
-        alert("Invalid monthly rate!");
-        return;
-    }
+    // if (isNaN(monthRate)) {
+    //     alert("Invalid frequency!");
+    //     return;
+    // }
 
-    if (!(d.isValid())) {
-        alert("Invalid start date!");
-        return;
-    }
+    // if (!(d.isValid())) {
+    //     alert("Invalid train time!");
+    //     return;
+    // }
 
 
     if (name && role && startDate && monthRate) {
@@ -71,7 +71,7 @@ database.ref().orderByChild("dateAdded").on("child_added", function (snapshot) {
 
     var rowName = snapshot.val().name;
     var rowRole = snapshot.val().role;
-    var rowDate = moment(snapshot.val().startDate).format("MM/DD/YYYY");
+    var rowDate = moment(snapshot.val().startDate).format('HH:mm');
     var rowRate = snapshot.val().monthRate;
     var monthsDif = moment().diff(moment(rowDate), "months");
 
